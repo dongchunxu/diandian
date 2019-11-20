@@ -2,18 +2,13 @@ import { Card, Col, Dropdown, Empty, Icon, Menu, Row, Badge, Button } from 'antd
 import React, { Component } from 'react';
 import { GridContent } from '@ant-design/pro-layout';
 import { connect } from 'dva';
-import { getTimeDistance } from './utils/utils';
 import styles from './style.less';
-import SmallCard from '@/pages/dashboard/analysis/components/SmallCard';
-import TopicSummary from '@/pages/dashboard/analysis/components/TopicPannel';
+import SmallCard from '@/pages/topic/topic-list/components/SmallCard';
+import HotTopic from '@/pages/topic/topic-list/components/HotTopic';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { formatMessage } from 'umi-plugin-react/locale';
-import TopicForm from '@/pages/dashboard/analysis/components/TopicForm';
-const IntroduceRow = React.lazy(() => import('./components/IntroduceRow'));
-const SalesCard = React.lazy(() => import('./components/SalesCard'));
-const TopSearch = React.lazy(() => import('./components/TopSearch'));
-const ProportionSales = React.lazy(() => import('./components/ProportionSales'));
-const OfflineData = React.lazy(() => import('./components/OfflineData'));
+import TopicForm from '@/pages/topic/topic-list/components/TopicForm';
+// const IntroduceRow = React.lazy(() => import('./components/IntroduceRow'));
 
 @connect(({ dashboardAndanalysis, loading }) => ({
   dashboardAndanalysis,
@@ -21,9 +16,7 @@ const OfflineData = React.lazy(() => import('./components/OfflineData'));
 }))
 class Analysis extends Component {
   state = {
-    salesType: 'all',
-    currentTabKey: '',
-    rangePickerValue: getTimeDistance('year'),
+    key: 'tab1',
   };
 
   reqRef = 0;
@@ -48,97 +41,20 @@ class Analysis extends Component {
     clearTimeout(this.timeoutId);
   }
 
-  handleChangeSalesType = e => {
-    this.setState({
-      salesType: e.target.value,
-    });
-  };
-
-  handleTabChange = key => {
-    this.setState({
-      currentTabKey: key,
-    });
-  };
-
-  handleRangePickerChange = rangePickerValue => {
-    const { dispatch } = this.props;
-    this.setState({
-      rangePickerValue,
-    });
-    dispatch({
-      type: 'dashboardAndanalysis/fetchSalesData',
-    });
-  };
-
-  selectDate = type => {
-    const { dispatch } = this.props;
-    this.setState({
-      rangePickerValue: getTimeDistance(type),
-    });
-    dispatch({
-      type: 'dashboardAndanalysis/fetchSalesData',
-    });
-  };
-
-  isActive = type => {
-    const { rangePickerValue } = this.state;
-    const value = getTimeDistance(type);
-
-    if (!rangePickerValue[0] || !rangePickerValue[1]) {
-      return '';
-    }
-
-    if (
-      rangePickerValue[0].isSame(value[0], 'day') &&
-      rangePickerValue[1].isSame(value[1], 'day')
-    ) {
-      return styles.currentDate;
-    }
-
-    return '';
-  };
-
   onTabChange = (key, type) => {
-    console.log(key, type);
     this.setState({ [type]: key });
   };
 
+  bindRefModal = (ref) => {
+    this.child = ref;
+  };
+
+  openAddTopicModal = () => {
+    this.child.show();
+  };
+
   render() {
-    const { rangePickerValue, salesType, currentTabKey } = this.state;
-    const { dashboardAndanalysis, loading } = this.props;
-    const {
-      visitData,
-      visitData2,
-      salesData,
-      searchData,
-      offlineData,
-      offlineChartData,
-      salesTypeData,
-      salesTypeDataOnline,
-      salesTypeDataOffline,
-    } = dashboardAndanalysis;
-    let salesPieData;
-
-    if (salesType === 'all') {
-      salesPieData = salesTypeData;
-    } else {
-      salesPieData = salesType === 'online' ? salesTypeDataOnline : salesTypeDataOffline;
-    }
-
-    const menu = (
-      <Menu>
-        <Menu.Item>操作一</Menu.Item>
-        <Menu.Item>操作二</Menu.Item>
-      </Menu>
-    );
-    const dropdownGroup = (
-      <span className={styles.iconGroup}>
-        <Dropdown overlay={menu} placement="bottomRight">
-          <Icon type="ellipsis" />
-        </Dropdown>
-      </span>
-    );
-    const activeKey = currentTabKey || (offlineData[0] && offlineData[0].name);
+    // const { dashboardAndanalysis, loading } = this.props;
 
     const tabList = [
       {
@@ -147,7 +63,7 @@ class Analysis extends Component {
       },
       {
         key: 'tab2',
-        tab: '帖子',
+        tab: '我关注的帖子',
       },
     ];
     const contentList = {
@@ -174,13 +90,13 @@ class Analysis extends Component {
           <Col xl={8} lg={8} md={8} sm={8} xs={8}>
             <SmallCard
               title="报价相关"
-              imgUrl="http://pic22.nipic.com/20120707/10486599_175616342138_2.jpg"
+              imgUrl="http://a.hiphotos.baidu.com/image/pic/item/f603918fa0ec08fa3139e00153ee3d6d55fbda5f.jpg"
               style={{ width: 250, marginTop: 16 }} />
           </Col>
           <Col xl={8} lg={8} md={8} sm={8} xs={8}>
             <SmallCard
               title="吐槽八卦"
-              imgUrl="http://pic32.nipic.com/20130819/3822951_105810231000_2.jpg"
+              imgUrl="http://a.hiphotos.baidu.com/image/pic/item/f603918fa0ec08fa3139e00153ee3d6d55fbda5f.jpg"
               style={{ width: 250, marginTop: 16 }} />
           </Col>
           <Col xl={8} lg={8} md={8} sm={8} xs={8}>
@@ -250,8 +166,8 @@ class Analysis extends Component {
                 className={styles.myFollow}
                 style={{ width: '100%' }}
                 title="我关注的主题（帖子）"
-                tabList={tabList}
                 activeTabKey={this.state.key}
+                tabList={tabList}
                 onTabChange={key => {
                   this.onTabChange(key, 'key');
                 }}
@@ -265,12 +181,9 @@ class Analysis extends Component {
                 style={{ width: '100%' }}
                 title="今日热门"
                 extra={<Button onClick={this.openAddTopicModal} type="primary" size="small" ><Icon type="plus"/>发表</Button>}
-                onTabChange={key => {
-                  this.onTabChange(key, 'key');
-                }}
                 hoverable
               >
-                <TopicSummary title="理性讨论这个问题" authorName="董春旭" />
+                <HotTopic title="理性讨论这个问题" authorName="董春旭" />
               </Card>
             </Col>
             <Col xl={8} lg={24} md={24} sm={24} xs={24}>
@@ -346,14 +259,6 @@ class Analysis extends Component {
       </PageHeaderWrapper>
     );
   }
-
-  bindRefModal = (ref) => {
-    this.child = ref;
-  };
-
-  openAddTopicModal = () => {
-    this.child.show();
-  };
 }
 
 export default Analysis;

@@ -119,10 +119,21 @@ export default {
           authority: ['admin', 'user'],
           routes: [
             {
-              path: '/dashboard',
+              path: '/topic/',
               name: '话题广场',
-              icon: 'dashboard',
-              component: './dashboard/analysis',
+              icon: 'form',
+              hideChildrenInMenu: true,
+              routes: [
+                {
+                  path: '/topic/',
+                  component: './topic/topic-list',
+                },
+                {
+                  name: '话题详情',
+                  path: '/topic/:id/detail',
+                  component: './topic/topic-detail',
+                }
+              ]
             },
             {
               path: '/form',
@@ -189,7 +200,7 @@ export default {
             },
             {
               path: '/',
-              redirect: '/dashboard/analysis',
+              redirect: '/topic/list',
               authority: ['admin', 'user'],
             },
             {

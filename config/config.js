@@ -132,6 +132,11 @@ export default {
                   name: '话题详情',
                   path: '/topic/:id/detail',
                   component: './topic/topic-detail',
+                },
+                {
+                  name: '话题分类',
+                  path: '/topic/category',
+                  component: './topic/topic-category',
                 }
               ]
             },

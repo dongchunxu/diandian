@@ -130,7 +130,7 @@ export default {
                 },
                 {
                   name: '话题详情',
-                  path: '/topic/:id/detail',
+                  path: '/topic/:id',
                   component: './topic/topic-detail',
                 },
                 {
@@ -141,71 +141,8 @@ export default {
               ]
             },
             {
-              path: '/form',
-              icon: 'form',
-              name: 'form',
-              routes: [
-                {
-                  name: 'basic-form',
-                  icon: 'smile',
-                  path: '/form/basic-form',
-                  component: './form/basic-form',
-                },
-                {
-                  name: 'step-form',
-                  icon: 'smile',
-                  path: '/form/step-form',
-                  component: './form/step-form',
-                },
-                {
-                  name: 'advanced-form',
-                  icon: 'smile',
-                  path: '/form/advanced-form',
-                  component: './form/advanced-form',
-                },
-              ],
-            },
-            {
-              path: '/profile',
-              name: 'profile',
-              icon: 'profile',
-              routes: [
-                {
-                  name: 'basic',
-                  icon: 'smile',
-                  path: '/profile/basic',
-                  component: './profile/basic',
-                },
-                {
-                  name: 'advanced',
-                  icon: 'smile',
-                  path: '/profile/advanced',
-                  component: './profile/advanced',
-                },
-              ],
-            },
-            {
-              name: 'account',
-              icon: 'user',
-              path: '/account',
-              routes: [
-                {
-                  name: 'center',
-                  icon: 'smile',
-                  path: '/account/center',
-                  component: './account/center',
-                },
-                {
-                  name: 'settings',
-                  icon: 'smile',
-                  path: '/account/settings',
-                  component: './account/settings',
-                },
-              ],
-            },
-            {
               path: '/',
-              redirect: '/topic/list',
+              redirect: '/topic/',
               authority: ['admin', 'user'],
             },
             {

@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Tag, Icon, Avatar } from 'antd';
+import Link from 'umi/link';
 import styles from './index.less';
 
 
@@ -24,7 +25,7 @@ class HotTopic extends PureComponent {
         <ul style={{padding: 0}}>
           {
             mockData.map(d => {
-              return (<li style={{ padding: '20px 0', borderBottom: '1px dashed #eee' }}>
+              return (<Link to="/topic/12313"> <li style={{ padding: '20px 0', borderBottom: '1px dashed #eee' }}>
                   <div style={{ fontSize: '12px', color: '#666', marginBottom: '6px' }}>
                     <Avatar shape="circle" size={26} src="http://a.hiphotos.baidu.com/image/pic/item/f603918fa0ec08fa3139e00153ee3d6d55fbda5f.jpg" />
                     <span style={{ marginLeft: '10px' }}>董某某{Math.floor(Math.random() * 10000000)}</span>
@@ -38,7 +39,7 @@ class HotTopic extends PureComponent {
                     <span style={{ paddingRight: '10px' }}> {Math.floor(Math.random() * 36)} 回复 </span>
                     <span style={{ paddingRight: '10px' }}> {Math.floor(Math.random() * 3000)} 浏览 </span>
                   </div>
-              </li>);
+              </li></Link>);
             })
           }
           <li style={{ fontSize: '12px', color: '#AAA', textAlign: 'center' }}>热门只有15条，已经到底了哦~</li>

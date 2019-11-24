@@ -178,15 +178,15 @@ class TopicIndex extends Component {
                 }}
               />
             </Col>
-            <Col xl={8} lg={8} md={8} sm={8} xs={8}>
-              <SmallCard
-                title="全部话题"
-                style={{
-                  width: 250,
-                  marginTop: 16,
-                }}
-              />
-            </Col>
+            {/*<Col xl={8} lg={8} md={8} sm={8} xs={8}>*/}
+            {/*  <SmallCard*/}
+            {/*    title="全部话题"*/}
+            {/*    style={{*/}
+            {/*      width: 250,*/}
+            {/*      marginTop: 16,*/}
+            {/*    }}*/}
+            {/*  />*/}
+            {/*</Col>*/}
           </Row>
         </React.Fragment>
       ),

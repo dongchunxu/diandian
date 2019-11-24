@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Tag, message } from 'antd';
 import { connect } from 'dva';
-import { formatMessage } from 'umi-plugin-react/locale';
 import groupBy from 'lodash/groupBy';
 import moment from 'moment';
 import NoticeIcon from '../NoticeIcon';
@@ -29,13 +28,10 @@ class GlobalHeaderRight extends Component {
       });
     }
   };
+
   handleNoticeClear = (title, key) => {
     const { dispatch } = this.props;
-    message.success(
-      `${formatMessage({
-        id: 'component.noticeIcon.cleared',
-      })} ${title}`,
-    );
+    message.success(`${'component.noticeIcon.cleared'} ${title}`);
 
     if (dispatch) {
       dispatch({
@@ -44,6 +40,7 @@ class GlobalHeaderRight extends Component {
       });
     }
   };
+
   getNoticeData = () => {
     const { notices = [] } = this.props;
 
@@ -85,6 +82,7 @@ class GlobalHeaderRight extends Component {
     });
     return groupBy(newNotices, 'type');
   };
+
   getUnreadData = noticeData => {
     const unreadMsg = {};
     Object.keys(noticeData).forEach(key => {
@@ -113,12 +111,8 @@ class GlobalHeaderRight extends Component {
           this.changeReadState(item);
         }}
         loading={fetchingNotices}
-        clearText={formatMessage({
-          id: 'component.noticeIcon.clear',
-        })}
-        viewMoreText={formatMessage({
-          id: 'component.noticeIcon.view-more',
-        })}
+        clearText="component.noticeIcon.clear"
+        viewMoreText="component.noticeIcon.view-more"
         onClear={this.handleNoticeClear}
         onPopupVisibleChange={onNoticeVisibleChange}
         onViewMore={() => message.info('Click on view more')}
@@ -128,34 +122,22 @@ class GlobalHeaderRight extends Component {
           tabKey="notification"
           count={unreadMsg.notification}
           list={noticeData.notification}
-          title={formatMessage({
-            id: 'component.globalHeader.notification',
-          })}
-          emptyText={formatMessage({
-            id: 'component.globalHeader.notification.empty',
-          })}
+          title="component.globalHeader.notification"
+          emptyText="component.globalHeader.notification.empty"
           showViewMore
         />
         <NoticeIcon.Tab
           tabKey="message"
           count={unreadMsg.message}
           list={noticeData.message}
-          title={formatMessage({
-            id: 'component.globalHeader.message',
-          })}
-          emptyText={formatMessage({
-            id: 'component.globalHeader.message.empty',
-          })}
+          title="component.globalHeader.message"
+          emptyText="component.globalHeader.message.empty"
           showViewMore
         />
         <NoticeIcon.Tab
           tabKey="event"
-          title={formatMessage({
-            id: 'component.globalHeader.event',
-          })}
-          emptyText={formatMessage({
-            id: 'component.globalHeader.event.empty',
-          })}
+          title="component.globalHeader.event"
+          emptyText="component.globalHeader.event.empty"
           count={unreadMsg.event}
           list={noticeData.event}
           showViewMore

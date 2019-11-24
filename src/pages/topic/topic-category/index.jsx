@@ -3,7 +3,7 @@ import { Row, Col, Card } from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { GridContent } from '@ant-design/pro-layout';
 import { connect } from 'dva';
-import styles from '@/pages/topic/topic-list/style.less';
+import styles from '@/pages/topic/topic-index/style.less';
 
 @connect(({ topicDetail }) => ({
   topicDetail,

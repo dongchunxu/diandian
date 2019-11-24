@@ -8,9 +8,9 @@ export default {
   fixSiderbar: false,
   colorWeak: false,
   menu: {
-    locale: true,
+    locale: false,
   },
-  title: 'Ant Design Pro',
+  title: '点我印',
   pwa: false,
   iconfontUrl: '',
 };

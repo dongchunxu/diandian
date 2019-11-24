@@ -46,13 +46,6 @@ class TopicDetail extends React.Component {
                     <span><Link to="/topic/">话题广场</Link></span>
                     <span style={{ color: '#1890FF' }}>&gt;</span>
                     <span><Link to="/topic/">二手交易</Link></span>
-                    <span style={{ color: '#1890FF' }} >&gt;</span>
-                    <span style={{ display: 'inline-block',
-                      width: '100px',
-                      whiteSpace: 'nowrap',
-                      textOverflow: 'ellipsis',
-                      overflow: 'hidden',
-                      verticalAlign: 'bottom'}}>{topicDetail.title}</span>
                   </div>
                   <div className={styles.topicInfo}>
                     <div style={{ fontSize: '12px', color: '#666', marginBottom: '10px' }}>
@@ -70,9 +63,6 @@ class TopicDetail extends React.Component {
                       <span style={{ marginLeft: '10px' }}><Icon type="edit"/>&nbsp;&nbsp;&nbsp;回帖</span>·
                       <span>8条回复</span>·
                       <span>417次浏览</span>
-                    </div>
-                    <div className={styles.tip}>
-                      拒绝灌水，文明交流，理性发言，互帮互助
                     </div>
                   </div>
                   <div className={styles.replyContainer}>
@@ -122,111 +112,6 @@ class TopicDetail extends React.Component {
                       </div>
                       <div className={styles.replyInfoContent}>
                        666~~~学到了=
-                        说还是花还是比较厉害的
-                        <br/>
-                        真的不骗你~~
-                      </div>
-                      <div className={styles.replyInfoStatus}>
-                        <div className={styles.toolLike}>
-                          <Icon type="like" theme="twoTone" twoToneColor="#118BFB" />
-                          <span className={styles.likeCount}>0</span>
-                        </div>
-                        <span style={{ margin: '0 8px' }}>·</span>
-                        <span><Icon type="message"/>&nbsp;&nbsp;添加评论</span>
-                        <span style={{ float: 'right'}}>回复时间: 20分钟前</span>
-                      </div>
-                    </div>
-                    <div className={styles.replyItemInfo}>
-                      <div style={{ fontSize: '12px', color: '#666', marginBottom: '10px' }}>
-                        <Avatar shape="circle" size={26} src={topicDetail.avatar} />
-                        <span className={styles.author} >{topicDetail.author}</span>
-                      </div>
-                      <div className={styles.replyInfoContent}>
-                        666~~~学到了=
-                        说还是花还是比较厉害的
-                        <br/>
-                        真的不骗你~~
-                      </div>
-                      <div className={styles.replyInfoStatus}>
-                        <div className={styles.toolLike}>
-                          <Icon type="like" theme="twoTone" twoToneColor="#118BFB" />
-                          <span className={styles.likeCount}>0</span>
-                        </div>
-                        <span style={{ margin: '0 8px' }}>·</span>
-                        <span><Icon type="message"/>&nbsp;&nbsp;添加评论</span>
-                        <span style={{ float: 'right'}}>回复时间: 20分钟前</span>
-                      </div>
-                    </div>
-                    <div className={styles.replyItemInfo}>
-                      <div style={{ fontSize: '12px', color: '#666', marginBottom: '10px' }}>
-                        <Avatar shape="circle" size={26} src={topicDetail.avatar} />
-                        <span className={styles.author} >{topicDetail.author}</span>
-                      </div>
-                      <div className={styles.replyInfoContent}>
-                        666~~~学到了=
-                        说还是花还是比较厉害的
-                        <br/>
-                        真的不骗你~~
-                      </div>
-                      <div className={styles.replyInfoStatus}>
-                        <div className={styles.toolLike}>
-                          <Icon type="like" theme="twoTone" twoToneColor="#118BFB" />
-                          <span className={styles.likeCount}>0</span>
-                        </div>
-                        <span style={{ margin: '0 8px' }}>·</span>
-                        <span><Icon type="message"/>&nbsp;&nbsp;添加评论</span>
-                        <span style={{ float: 'right'}}>回复时间: 20分钟前</span>
-                      </div>
-                    </div>
-                    <div className={styles.replyItemInfo}>
-                      <div style={{ fontSize: '12px', color: '#666', marginBottom: '10px' }}>
-                        <Avatar shape="circle" size={26} src={topicDetail.avatar} />
-                        <span className={styles.author} >{topicDetail.author}</span>
-                      </div>
-                      <div className={styles.replyInfoContent}>
-                        666~~~学到了=
-                        说还是花还是比较厉害的
-                        <br/>
-                        真的不骗你~~
-                      </div>
-                      <div className={styles.replyInfoStatus}>
-                        <div className={styles.toolLike}>
-                          <Icon type="like" theme="twoTone" twoToneColor="#118BFB" />
-                          <span className={styles.likeCount}>0</span>
-                        </div>
-                        <span style={{ margin: '0 8px' }}>·</span>
-                        <span><Icon type="message"/>&nbsp;&nbsp;添加评论</span>
-                        <span style={{ float: 'right'}}>回复时间: 20分钟前</span>
-                      </div>
-                    </div>
-                    <div className={styles.replyItemInfo}>
-                      <div style={{ fontSize: '12px', color: '#666', marginBottom: '10px' }}>
-                        <Avatar shape="circle" size={26} src={topicDetail.avatar} />
-                        <span className={styles.author} >{topicDetail.author}</span>
-                      </div>
-                      <div className={styles.replyInfoContent}>
-                        666~~~学到了=
-                        说还是花还是比较厉害的
-                        <br/>
-                        真的不骗你~~
-                      </div>
-                      <div className={styles.replyInfoStatus}>
-                        <div className={styles.toolLike}>
-                          <Icon type="like" theme="twoTone" twoToneColor="#118BFB" />
-                          <span className={styles.likeCount}>0</span>
-                        </div>
-                        <span style={{ margin: '0 8px' }}>·</span>
-                        <span><Icon type="message"/>&nbsp;&nbsp;添加评论</span>
-                        <span style={{ float: 'right'}}>回复时间: 20分钟前</span>
-                      </div>
-                    </div>
-                    <div className={styles.replyItemInfo}>
-                      <div style={{ fontSize: '12px', color: '#666', marginBottom: '10px' }}>
-                        <Avatar shape="circle" size={26} src={topicDetail.avatar} />
-                        <span className={styles.author} >{topicDetail.author}</span>
-                      </div>
-                      <div className={styles.replyInfoContent}>
-                        666~~~学到了=
                         说还是花还是比较厉害的
                         <br/>
                         真的不骗你~~

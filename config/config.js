@@ -17,11 +17,11 @@ const plugins = [
       },
       locale: {
         // default false
-        enable: true,
+        enable: false,
         // default zh-CN
         default: 'zh-CN',
         // default true, when it is true, will use `navigator.language` overwrite default
-        baseNavigator: true,
+        baseNavigator: false,
       },
       // dynamicImport: {
       //   loadingComponent: './components/PageLoading/index',
@@ -123,21 +123,25 @@ export default {
               name: '话题广场',
               icon: 'form',
               hideChildrenInMenu: true,
+              hideInBreadcrumb: true,
               routes: [
                 {
                   path: '/topic/',
-                  component: './topic/topic-list',
+                  component: './topic/topic-index',
+                  hideInBreadcrumb: true,
                 },
                 {
                   name: '话题详情',
                   path: '/topic/:id',
                   component: './topic/topic-detail',
+                  hideInBreadcrumb: true,
                 },
                 {
                   name: '话题分类',
-                  path: '/topic/category',
-                  component: './topic/topic-category',
-                }
+                  path: '/topic/:id/list',
+                  component: './topic/topic-list',
+                  hideInBreadcrumb: true,
+                },
               ]
             },
             {

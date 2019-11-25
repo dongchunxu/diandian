@@ -33,3 +33,8 @@ export const getAuthorityFromRouter = (router = [], pathname) => {
   if (authority) return authority;
   return undefined;
 };
+
+
+export const getHumanTime = () => {
+
+};

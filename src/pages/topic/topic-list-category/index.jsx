@@ -5,15 +5,38 @@ import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { GridContent } from '@ant-design/pro-layout';
 import { connect } from 'dva';
 import styles from './style.less';
-import HotTopic from '@/pages/topic/topic-list/components/HotTopic';
+import TopicList from '@/pages/topic/topic-list-category/components/TopicList';
 
-@connect(({ topicList }) => ({
-  topicList,
+@connect(({ topicListIndex }) => ({
+  topicListIndex,
 }))
-class TopicList extends React.Component {
+class TopicListIndex extends React.Component {
+
+  constructor(...args) {
+    super(...args);
+    this.state = {
+      pageNo: 1,
+      pageSize: 10,
+    }
+  }
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+    const { match: { params: { id: categoryId }}} = this.props;
+    const { pageNo, pageSize } = this.state;
+    dispatch({
+      type: 'topicListIndex/fetch',
+      payload: {
+        pageNo,
+        pageSize,
+        categoryId: parseInt(categoryId, 10),
+      },
+    })
+  }
 
   render() {
-    const { topicDetail } = this.props;
+    const { topicListIndex } = this.props;
+    const { topicList } = topicListIndex;
     return (
       <PageHeaderWrapper title={false}>
         <GridContent>
@@ -40,7 +63,7 @@ class TopicList extends React.Component {
                     <span><Link to="/topic/">二手交易</Link></span>
                   </div>
 
-                  <HotTopic />
+                  <TopicList topicList={topicList} />
                 </Card>
               </Col>
             </Row>
@@ -50,4 +73,4 @@ class TopicList extends React.Component {
     );
   }
 }
-export default TopicList;
+export default TopicListIndex;

@@ -131,15 +131,15 @@ export default {
                   hideInBreadcrumb: true,
                 },
                 {
-                  name: '话题详情',
-                  path: '/topic/:id',
-                  component: './topic/topic-detail',
+                  name: '话题分类',
+                  path: '/topic/category/:id/list',
+                  component: './topic/topic-list-category',
                   hideInBreadcrumb: true,
                 },
                 {
-                  name: '话题分类',
-                  path: '/topic/:id/list',
-                  component: './topic/topic-list',
+                  name: '话题详情',
+                  path: '/topic/:id',
+                  component: './topic/topic-detail',
                   hideInBreadcrumb: true,
                 },
               ]

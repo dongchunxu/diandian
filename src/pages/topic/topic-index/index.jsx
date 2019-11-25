@@ -59,11 +59,11 @@ class TopicIndex extends Component {
     const tabList = [
       {
         key: 'tab1',
-        tab: '主题',
+        tab: '版块',
       },
       {
         key: 'tab2',
-        tab: '我关注的帖子',
+        tab: '我关注的话题',
       },
     ];
     const contentList = {
@@ -71,7 +71,7 @@ class TopicIndex extends Component {
         <React.Fragment>
           <Row gutter={24}>
             <Col xl={8} lg={8} md={8} sm={8} xs={8}>
-              <Link to="/topic/12212/list">
+              <Link to="/topic/category/1/list">
                 <SmallCard
                   title="行业交流"
                   imgUrl="http://pic1.win4000.com/wallpaper/d/57b432151e673.jpg"
@@ -83,7 +83,7 @@ class TopicIndex extends Component {
               </Link>
             </Col>
             <Col xl={8} lg={8} md={8} sm={8} xs={8}>
-              <Link to="/topic/12212/list">
+              <Link to="/topic/category/2/list">
                 <SmallCard
                   title="二手交易"
                   imgUrl="http://www.33lc.com/article/UploadPic/2012-8/2012838583248130.jpg"
@@ -95,9 +95,9 @@ class TopicIndex extends Component {
               </Link>
             </Col>
             <Col xl={8} lg={8} md={8} sm={8} xs={8}>
-              <Link to="/topic/12212/list">
+              <Link to="/topic/category/3/list">
                 <SmallCard
-                  title="推广"
+                  title="求职招聘"
                   imgUrl="http://hbimg.b0.upaiyun.com/b2a22f618f1458e9745ca20587a6354efbd62d0e114601-xlYJeQ_fw658"
                   style={{
                     width: 250,
@@ -107,7 +107,7 @@ class TopicIndex extends Component {
               </Link>
             </Col>
             <Col xl={8} lg={8} md={8} sm={8} xs={8}>
-              <Link to="/topic/12212/list">
+              <Link to="/topic/category/4/list">
                 <SmallCard
                   title="报价相关"
                   imgUrl="http://a.hiphotos.baidu.com/image/pic/item/f603918fa0ec08fa3139e00153ee3d6d55fbda5f.jpg"
@@ -178,15 +178,6 @@ class TopicIndex extends Component {
                 }}
               />
             </Col>
-            {/*<Col xl={8} lg={8} md={8} sm={8} xs={8}>*/}
-            {/*  <SmallCard*/}
-            {/*    title="全部话题"*/}
-            {/*    style={{*/}
-            {/*      width: 250,*/}
-            {/*      marginTop: 16,*/}
-            {/*    }}*/}
-            {/*  />*/}
-            {/*</Col>*/}
           </Row>
         </React.Fragment>
       ),
@@ -217,7 +208,7 @@ class TopicIndex extends Component {
                   style={{
                     width: '100%',
                   }}
-                  title="我关注的主题（帖子）"
+                  title="版块 / 我关注的"
                   activeTabKey={this.state.key}
                   tabList={tabList}
                   onTabChange={key => {
@@ -233,9 +224,9 @@ class TopicIndex extends Component {
                   style={{
                     width: '100%',
                   }}
-                  title="今日热门"
+                  title="热门话题"
                   extra={
-                    <Button onClick={this.openAddTopicModal} type="primary" size="small">
+                    <Button onClick={this.openAddTopicModal} type="primary" size="default">
                       <Icon type="plus" />
                       发表
                     </Button>

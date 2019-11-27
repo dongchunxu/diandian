@@ -12,7 +12,8 @@ class SmallCard extends PureComponent {
             { title }
           </div>
           <div className={styles.otherInfo}>
-            <span>董春旭创建于2019-12-01</span>
+            <span>今日 (<b>100</b>)</span>
+            <span>历史总数 (2889)</span>
           </div>
         </div>
       </div>
@@ -33,7 +34,8 @@ class SmallCard extends PureComponent {
               { title }
             </div>
             <div className={styles.otherInfo}>
-              <span>董春旭创建于2019-12-01</span>
+              <span>今日 (<b style={{color: '#FF3300'}}>10</b>)</span>
+              <span>历史总数 (288)</span>
             </div>
           </div>
         </div>) : allTopic);

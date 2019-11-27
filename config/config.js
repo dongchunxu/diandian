@@ -145,6 +145,32 @@ export default {
               ]
             },
             {
+              path: '/supplier/',
+              name: '找供应商',
+              icon: 'form',
+              hideChildrenInMenu: true,
+              hideInBreadcrumb: true,
+              routes: [
+                {
+                  path: '/topic/',
+                  component: './topic/topic-index',
+                  hideInBreadcrumb: true,
+                },
+                {
+                  name: '话题分类',
+                  path: '/topic/category/:id/list',
+                  component: './topic/topic-list-category',
+                  hideInBreadcrumb: true,
+                },
+                {
+                  name: '话题详情',
+                  path: '/topic/:id',
+                  component: './topic/topic-detail',
+                  hideInBreadcrumb: true,
+                },
+              ]
+            },
+            {
               path: '/',
               redirect: '/topic/',
               authority: ['admin', 'user'],

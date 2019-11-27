@@ -6,6 +6,14 @@ import Link from 'umi/link';
 import styles from './style.less';
 import SmallCard from '@/pages/topic/topic-index/components/SmallCard';
 import HotTopic from '@/pages/topic/topic-index/components/HotTopic';
+import JoinUs from '../../../assets/wechat_banner.png';
+import Job from '../../../assets/undraw_multitasking_hqg3.svg';
+import ChatGroup from '../../../assets/undraw_chatting_2yvo.svg';
+import TradeIn from '../../../assets/undraw_make_it_rain_iwk4.svg';
+import Price from '../../../assets/undraw_printing_invoices_5r4r.svg';
+import Conversation from '../../../assets/undraw_word_of_mouth_v1j9.svg';
+import Advise from '../../../assets/undraw_wall_post_83ul.svg';
+import Deal from '../../../assets/undraw_business_deal_cpi9.svg';
 
 import TopicForm from '@/pages/topic/topic-index/components/TopicForm'; // const IntroduceRow = React.lazy(() => import('./components/IntroduceRow'));
 
@@ -74,7 +82,7 @@ class TopicIndex extends Component {
               <Link to="/topic/category/1/list">
                 <SmallCard
                   title="行业交流"
-                  imgUrl="http://pic1.win4000.com/wallpaper/d/57b432151e673.jpg"
+                  imgUrl={ChatGroup}
                   style={{
                     width: 250,
                     marginTop: 16,
@@ -86,7 +94,7 @@ class TopicIndex extends Component {
               <Link to="/topic/category/2/list">
                 <SmallCard
                   title="二手交易"
-                  imgUrl="http://www.33lc.com/article/UploadPic/2012-8/2012838583248130.jpg"
+                  imgUrl={TradeIn}
                   style={{
                     width: 250,
                     marginTop: 16,
@@ -98,7 +106,7 @@ class TopicIndex extends Component {
               <Link to="/topic/category/3/list">
                 <SmallCard
                   title="求职招聘"
-                  imgUrl="http://hbimg.b0.upaiyun.com/b2a22f618f1458e9745ca20587a6354efbd62d0e114601-xlYJeQ_fw658"
+                  imgUrl={Job}
                   style={{
                     width: 250,
                     marginTop: 16,
@@ -110,7 +118,7 @@ class TopicIndex extends Component {
               <Link to="/topic/category/4/list">
                 <SmallCard
                   title="报价相关"
-                  imgUrl="http://a.hiphotos.baidu.com/image/pic/item/f603918fa0ec08fa3139e00153ee3d6d55fbda5f.jpg"
+                  imgUrl={Price}
                   style={{
                     width: 250,
                     marginTop: 16,
@@ -121,7 +129,7 @@ class TopicIndex extends Component {
             <Col xl={8} lg={8} md={8} sm={8} xs={8}>
               <SmallCard
                 title="吐槽八卦"
-                imgUrl="http://a.hiphotos.baidu.com/image/pic/item/f603918fa0ec08fa3139e00153ee3d6d55fbda5f.jpg"
+                imgUrl={Conversation}
                 style={{
                   width: 250,
                   marginTop: 16,
@@ -130,38 +138,8 @@ class TopicIndex extends Component {
             </Col>
             <Col xl={8} lg={8} md={8} sm={8} xs={8}>
               <SmallCard
-                title="吐槽八卦"
-                imgUrl="http://pic1.win4000.com/wallpaper/c/57d65d98ae19a.jpg"
-                style={{
-                  width: 250,
-                  marginTop: 16,
-                }}
-              />
-            </Col>
-            <Col xl={8} lg={8} md={8} sm={8} xs={8}>
-              <SmallCard
-                title="吐槽八卦"
-                imgUrl="http://pic1.win4000.com/wallpaper/4/58956d4978910.jpg"
-                style={{
-                  width: 250,
-                  marginTop: 16,
-                }}
-              />
-            </Col>
-            <Col xl={8} lg={8} md={8} sm={8} xs={8}>
-              <SmallCard
-                title="行业交流"
-                imgUrl="http://pic1.win4000.com/wallpaper/d/57b432151e673.jpg"
-                style={{
-                  width: 250,
-                  marginTop: 16,
-                }}
-              />
-            </Col>
-            <Col xl={8} lg={8} md={8} sm={8} xs={8}>
-              <SmallCard
-                title="二手交易"
-                imgUrl="http://www.33lc.com/article/UploadPic/2012-8/2012838583248130.jpg"
+                title="意见与建议"
+                imgUrl={Advise}
                 style={{
                   width: 250,
                   marginTop: 16,
@@ -171,7 +149,16 @@ class TopicIndex extends Component {
             <Col xl={8} lg={8} md={8} sm={8} xs={8}>
               <SmallCard
                 title="推广"
-                imgUrl="http://hbimg.b0.upaiyun.com/b2a22f618f1458e9745ca20587a6354efbd62d0e114601-xlYJeQ_fw658"
+                imgUrl={Deal}
+                style={{
+                  width: 250,
+                  marginTop: 16,
+                }}
+              />
+            </Col>
+            <Col xl={8} lg={8} md={8} sm={8} xs={8}>
+              <SmallCard
+                title="全部"
                 style={{
                   width: 250,
                   marginTop: 16,
@@ -210,6 +197,12 @@ class TopicIndex extends Component {
                   }}
                   title="版块 / 我关注的"
                   activeTabKey={this.state.key}
+                  extra={
+                    <Button onClick={this.openAddTopicModal} type="primary" size="default">
+                      <Icon type="plus" />
+                      发表
+                    </Button>
+                  }
                   tabList={tabList}
                   onTabChange={key => {
                     this.onTabChange(key, 'key');
@@ -225,13 +218,6 @@ class TopicIndex extends Component {
                     width: '100%',
                   }}
                   title="热门话题"
-                  extra={
-                    <Button onClick={this.openAddTopicModal} type="primary" size="default">
-                      <Icon type="plus" />
-                      发表
-                    </Button>
-                  }
-                  hoverable
                 >
                   <HotTopic title="理性讨论这个问题" authorName="董春旭" />
                 </Card>
@@ -294,7 +280,7 @@ class TopicIndex extends Component {
                             display: 'inline-block',
                           }}
                         >
-                          查看 <a>社区管理指南</a> 和 <a>报价指南</a>
+                          查看 <a>社区管理指南</a>
                         </span>
                       </p>
                     </div>
@@ -318,20 +304,9 @@ class TopicIndex extends Component {
                   ,
                 </Card>
                 <Card
-                  style={{
-                    width: '100%',
-                  }}
-                  title="我的浏览记录"
-                  hoverable
+                  bodyStyle={{ padding: '2px' }}
                 >
-                  <Empty
-                    image="https://gw.alipayobjects.com/mdn/miniapp_social/afts/img/A*pevERLJC9v0AAAAAAAAAAABjAQAAAQ/original"
-                    imageStyle={{
-                      height: 60,
-                    }}
-                    description={<span>暂无数据~</span>}
-                  ></Empty>
-                  ,
+                  <img style={{width: '100%', height: '100%'}} src={JoinUs} alt="joinUs"/>
                 </Card>
                 <div>
                   <span

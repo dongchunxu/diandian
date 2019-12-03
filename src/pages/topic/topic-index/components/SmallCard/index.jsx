@@ -34,7 +34,7 @@ class SmallCard extends PureComponent {
               { title }
             </div>
             <div className={styles.otherInfo}>
-              <span>今日 (<b style={{color: '#FF3300'}}>10</b>)</span>
+              <span>今日 (10)</span>
               <span>历史总数 (288)</span>
             </div>
           </div>

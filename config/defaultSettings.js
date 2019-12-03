@@ -1,5 +1,5 @@
 export default {
-  navTheme: 'dark',
+  navTheme: 'light',
   primaryColor: '#1890FF',
   layout: 'topmenu',
   contentWidth: 'Fixed',

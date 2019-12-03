@@ -1,4 +1,4 @@
-import { Icon, Tooltip } from 'antd';
+import { Icon, Tooltip, Input, Button } from 'antd';
 import React from 'react';
 import { connect } from 'dva';
 import Avatar from './AvatarDropdown';
@@ -6,6 +6,8 @@ import HeaderSearch from '../HeaderSearch';
 import SelectLang from '../SelectLang';
 import styles from './index.less';
 import NoticeIconView from './NoticeIconView';
+
+const { Search } = Input;
 
 const GlobalHeaderRight = props => {
   const { theme, layout } = props;
@@ -17,25 +19,28 @@ const GlobalHeaderRight = props => {
 
   return (
     <div className={className}>
-      <HeaderSearch
-        className={`${styles.action} ${styles.search}`}
-        placeholder="component.globalHeader.search"
-        defaultValue="umi ui"
-        dataSource={[
-          'component.globalHeader.search.example1',
-          'component.globalHeader.search.example2',
-          'component.globalHeader.search.example3',
-        ]}
-        onSearch={value => {
-          console.log('input', value);
-        }}
-        onPressEnter={value => {
-          console.log('enter', value);
-        }}
+      <Search
+        placeholder="搜索站内用户/帖子"
+        onSearch={value => console.log(value)}
+        style={{ width: 240}}
       />
+      <Button type="primary" style={{ margin: '0 120px 0 20px' }}>
+        发贴
+      </Button>
+      <Tooltip
+        title="帮助文档"
+      >
+        <a
+          target="_blank"
+          href="https://pro.ant.design/docs/getting-started"
+          rel="noopener noreferrer"
+          className={styles.action}
+        >
+          <Icon type="question-circle-o" />
+        </a>
+      </Tooltip>
       <NoticeIconView />
       <Avatar menu />
-      {/*<SelectLang className={styles.action} />*/}
     </div>
   );
 };

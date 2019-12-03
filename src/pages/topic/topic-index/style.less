@@ -199,6 +199,11 @@
     line-height: 15px;
   }
 
+  .ant-input-affix-wrapper {
+    .ant-input {
+      background-color: #f5f5f5;
+    }
+  }
   .ant-card {
     margin-bottom: 16px;
     border-radius: 4px;
@@ -260,7 +265,45 @@
 .introduce {
   :global {
     .ant-card-body {
-      padding: 0 12px 24px 24px;
+      padding: 0 24px;
     }
   }
 }
+
+.myRecommend {
+  :global {
+    .ant-card-head {
+      border-top: 1px solid #1890FF;
+    }
+    .ant-card-body {
+      padding: 0 12px 12px 24px;
+    }
+  }
+  .recommendItem {
+      > span:first-child {
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      vertical-align: top;
+    }
+    > span:last-child {
+      display: inline-block;
+      line-height: 15px;
+      height: 14px;
+      span {
+        margin-left: 10px;
+      }
+    }
+    .status {
+      line-height: 13px;
+      height: 12px;
+      margin-top: 5px;
+      display: inline-block;
+      font-size: 12px;
+      color: rgba(0, 0, 0, 0.45);
+    }
+  }
+
+}
+
+

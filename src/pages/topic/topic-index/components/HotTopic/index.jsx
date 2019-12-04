@@ -13,7 +13,7 @@ class HotTopic extends PureComponent {
         <ul style={{padding: 0}}>
           {
             hotTopicList.map(topic => {
-              return (<Link to="/topic/12313"> <li style={{ padding: '20px 0', borderBottom: '1px dashed #eee' }}>
+              return (<Link to={`/topic/${topic.id}`}> <li style={{ padding: '20px 0', borderBottom: '1px dashed #eee' }}>
                   <div style={{ fontSize: '14px', color: 'rgba(0,0,0,0.65)', marginBottom: '6px' }}>
                     <Avatar shape="square" size={26} src={topic.avatar} />
                     <span style={{ marginLeft: '10px' }}>{topic.authorName}</span>
@@ -25,7 +25,7 @@ class HotTopic extends PureComponent {
                 <div className={styles.status}>
                   <div className={styles.toolLike}>
                     <Icon type="like" theme="twoTone" twoToneColor="#118BFB" />
-                    <span className={styles.likeCount}>{Math.floor(Math.random() * 10)} </span>
+                    <span className={styles.likeCount}>{topic.followCnt} </span>
                   </div>
                   <span style={{ paddingRight: '15px' }}> <a> <Icon type="message" /> 评论 ({topic.replyCnt})</a> </span>
                   <span style={{ paddingRight: '15px' }}> <a><Icon type="eye" /> 浏览({topic.viewCnt})</a> </span>

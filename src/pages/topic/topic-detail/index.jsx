@@ -7,7 +7,7 @@ import { connect } from 'dva';
 import styles from '@/pages/topic/topic-detail/style.less';
 
 @connect(({ topicDetail }) => ({
-  topicDetail,
+  detail: topicDetail.detail,
 }))
 class TopicDetail extends React.Component {
 
@@ -23,8 +23,8 @@ class TopicDetail extends React.Component {
   }
 
   render() {
-    const { topicDetail } = this.props;
-    console.info("render: ", topicDetail);
+    const { detail } = this.props;
+    console.info("render: ", detail);
     return (
       <PageHeaderWrapper title={false}>
         <GridContent>
@@ -52,24 +52,25 @@ class TopicDetail extends React.Component {
                       whiteSpace: 'nowrap',
                       textOverflow: 'ellipsis',
                       overflow: 'hidden',
-                      verticalAlign: 'bottom'}}>{topicDetail.title}</span>
+                      verticalAlign: 'bottom'}}>{detail.title}</span>
                   </div>
                   <div className={styles.topicInfo}>
                     <div style={{ fontSize: '12px', color: '#666', marginBottom: '10px' }}>
-                      <Avatar shape="circle" size={26} src={topicDetail.avatar} />
-                      <span className={styles.author} >{topicDetail.author}</span>
-                      <span className={styles.addTime} >{topicDetail.addTime}</span>
+                      <Avatar shape="circle" size={26} src={detail.avatar} />
+                      <span className={styles.author} >{detail.authorName}</span>
+                      <span className={styles.orgName} ><Icon type="home" />&nbsp;&nbsp;{detail.orgName}</span>
+                      <span className={styles.addTime} >{detail.addTime}</span>
                     </div>
-                    <div className={styles.title}>{topicDetail.title}</div>
-                    <div className={styles.content}>{topicDetail.content}</div>
+                    <div className={styles.title}>{detail.title}</div>
+                    <div className={styles.content}>{detail.content}</div>
                     <div className={styles.status}>
                       <div className={styles.toolLike}>
                         <Icon type="like" theme="twoTone" twoToneColor="#118BFB" />
-                        <span className={styles.likeCount}>2</span>
+                        <span className={styles.likeCount}>{detail.followCnt}</span>
                       </div>
                       <span style={{ marginLeft: '10px' }}><Icon type="edit"/>&nbsp;&nbsp;&nbsp;回帖</span>·
-                      <span>8条回复</span>·
-                      <span>417次浏览</span>
+                      <span>{detail.replyCnt}条回复</span>·
+                      <span>{detail.viewCnt}次浏览</span>
                     </div>
                     <div className={styles.tip}>
                       拒绝灌水，文明交流，理性发言，互帮互助
@@ -81,8 +82,8 @@ class TopicDetail extends React.Component {
                     </div>
                     <div className={styles.replyItemInfo}>
                       <div style={{ fontSize: '12px', color: '#666', marginBottom: '10px' }}>
-                        <Avatar shape="circle" size={26} src={topicDetail.avatar} />
-                        <span className={styles.author} >{topicDetail.author}</span>
+                        <Avatar shape="circle" size={26} src={detail.avatar} />
+                        <span className={styles.author} >{detail.author}</span>
                       </div>
                       <div className={styles.replyInfoContent}>
                         我们公司的工卡难道不是简约性冷淡主题的白板吗？有啥好看不好看的，进门刷卡能嘀嘀就行了呗。
@@ -99,8 +100,8 @@ class TopicDetail extends React.Component {
                     </div>
                     <div className={styles.replyItemInfo}>
                       <div style={{ fontSize: '12px', color: '#666', marginBottom: '10px' }}>
-                        <Avatar shape="circle" size={26} src={topicDetail.avatar} />
-                        <span className={styles.author} >{topicDetail.author}</span>
+                        <Avatar shape="circle" size={26} src={detail.avatar} />
+                        <span className={styles.author} >{detail.author}</span>
                       </div>
                       <div className={styles.replyInfoContent}>
                         我们公司的工卡难道不是简约性冷淡主题的白板吗？有啥好看不
@@ -117,8 +118,8 @@ class TopicDetail extends React.Component {
                     </div>
                     <div className={styles.replyItemInfo}>
                       <div style={{ fontSize: '12px', color: '#666', marginBottom: '10px' }}>
-                        <Avatar shape="circle" size={26} src={topicDetail.avatar} />
-                        <span className={styles.author} >{topicDetail.author}</span>
+                        <Avatar shape="circle" size={26} src={detail.avatar} />
+                        <span className={styles.author} >{detail.author}</span>
                       </div>
                       <div className={styles.replyInfoContent}>
                        666~~~学到了=
@@ -138,8 +139,8 @@ class TopicDetail extends React.Component {
                     </div>
                     <div className={styles.replyItemInfo}>
                       <div style={{ fontSize: '12px', color: '#666', marginBottom: '10px' }}>
-                        <Avatar shape="circle" size={26} src={topicDetail.avatar} />
-                        <span className={styles.author} >{topicDetail.author}</span>
+                        <Avatar shape="circle" size={26} src={detail.avatar} />
+                        <span className={styles.author} >{detail.author}</span>
                       </div>
                       <div className={styles.replyInfoContent}>
                         666~~~学到了=
@@ -159,8 +160,8 @@ class TopicDetail extends React.Component {
                     </div>
                     <div className={styles.replyItemInfo}>
                       <div style={{ fontSize: '12px', color: '#666', marginBottom: '10px' }}>
-                        <Avatar shape="circle" size={26} src={topicDetail.avatar} />
-                        <span className={styles.author} >{topicDetail.author}</span>
+                        <Avatar shape="circle" size={26} src={detail.avatar} />
+                        <span className={styles.author} >{detail.author}</span>
                       </div>
                       <div className={styles.replyInfoContent}>
                         666~~~学到了=
@@ -180,8 +181,8 @@ class TopicDetail extends React.Component {
                     </div>
                     <div className={styles.replyItemInfo}>
                       <div style={{ fontSize: '12px', color: '#666', marginBottom: '10px' }}>
-                        <Avatar shape="circle" size={26} src={topicDetail.avatar} />
-                        <span className={styles.author} >{topicDetail.author}</span>
+                        <Avatar shape="circle" size={26} src={detail.avatar} />
+                        <span className={styles.author} >{detail.author}</span>
                       </div>
                       <div className={styles.replyInfoContent}>
                         666~~~学到了=
@@ -201,8 +202,8 @@ class TopicDetail extends React.Component {
                     </div>
                     <div className={styles.replyItemInfo}>
                       <div style={{ fontSize: '12px', color: '#666', marginBottom: '10px' }}>
-                        <Avatar shape="circle" size={26} src={topicDetail.avatar} />
-                        <span className={styles.author} >{topicDetail.author}</span>
+                        <Avatar shape="circle" size={26} src={detail.avatar} />
+                        <span className={styles.author} >{detail.author}</span>
                       </div>
                       <div className={styles.replyInfoContent}>
                         666~~~学到了=
@@ -222,8 +223,8 @@ class TopicDetail extends React.Component {
                     </div>
                     <div className={styles.replyItemInfo}>
                       <div style={{ fontSize: '12px', color: '#666', marginBottom: '10px' }}>
-                        <Avatar shape="circle" size={26} src={topicDetail.avatar} />
-                        <span className={styles.author} >{topicDetail.author}</span>
+                        <Avatar shape="circle" size={26} src={detail.avatar} />
+                        <span className={styles.author} >{detail.author}</span>
                       </div>
                       <div className={styles.replyInfoContent}>
                         666~~~学到了=

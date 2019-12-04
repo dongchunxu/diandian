@@ -1,4 +1,4 @@
-import { Card, Col, Dropdown, Empty, Icon, Menu, Row, Badge, Avatar, Spin } from 'antd';
+import { Card, Col, Dropdown, Empty, Icon, Button, Row, Badge, Avatar, Spin } from 'antd';
 import React, { Component } from 'react';
 import { GridContent, PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
@@ -76,7 +76,11 @@ class TopicIndex extends Component {
       },
       {
         key: 'tab2',
-        tab: '我关注的话题',
+        tab: '关注话题',
+      },
+      {
+        key: 'tab2',
+        tab: '关注用户',
       },
     ];
     const contentList = {
@@ -303,11 +307,10 @@ class TopicIndex extends Component {
                     <span>
                       <span style={{verticalAlign: 'top' }}>猪八戒</span>
                       <span>华东彩印</span>
+                      <span className={styles.follow}><Icon type="plus"/> 加入关注</span>
                       <div>
                         <span className={styles.status}>20关注</span>
                         <span className={styles.status}>80回复</span>
-                                                <span className={styles.status}>加入关注</span>
-
                       </div>
                     </span>
                   </div>
@@ -318,11 +321,10 @@ class TopicIndex extends Component {
                     <span>
                       <span style={{verticalAlign: 'top' }}>图美图文</span>
                       <span>郑州盛大彩印</span>
+                      <span className={styles.follow}><Icon type="plus"/> 加入关注</span>
                       <div>
                         <span className={styles.status}>20关注</span>
                         <span className={styles.status}>80回复</span>
-                                                <span className={styles.status}>加入关注</span>
-
                       </div>
                     </span>
                   </div>
@@ -333,11 +335,10 @@ class TopicIndex extends Component {
                     <span>
                       <span style={{verticalAlign: 'top' }}>吴孟达</span>
                       <span>营销设计部门</span>
+                       <span className={styles.follow}><Icon type="plus"/> 加入关注</span>
                       <div>
                         <span className={styles.status}>20关注</span>
                         <span className={styles.status}>80回复</span>
-                                                <span className={styles.status}>加入关注</span>
-
                       </div>
                     </span>
                   </div>
@@ -348,11 +349,10 @@ class TopicIndex extends Component {
                     <span>
                       <span style={{verticalAlign: 'top' }}>孙悟东</span>
                       <span>营销设计部门</span>
+                       <span className={styles.follow}><Icon type="plus"/> 加入关注</span>
                       <div>
                         <span className={styles.status}>20关注</span>
                         <span className={styles.status}>80回复</span>
-                                                <span className={styles.status}>加入关注</span>
-
                       </div>
                     </span>
                   </div>
@@ -363,11 +363,10 @@ class TopicIndex extends Component {
                     <span>
                       <span style={{verticalAlign: 'top' }}>董春旭</span>
                       <span>营销设计部门</span>
+                       <span className={styles.follow}><Icon type="plus"/> 加入关注</span>
                       <div>
                         <span className={styles.status}>20关注</span>
                         <span className={styles.status}>80回复</span>
-                                                <span className={styles.status}>加入关注</span>
-
                       </div>
                     </span>
                   </div>
@@ -378,11 +377,10 @@ class TopicIndex extends Component {
                     <span>
                       <span style={{verticalAlign: 'top' }}>董春旭</span>
                       <span>营销设计部门</span>
+                       <span className={styles.follow}><Icon type="plus"/> 加入关注</span>
                       <div>
                         <span className={styles.status}>20关注</span>
                         <span className={styles.status}>80回复</span>
-                          <span className={styles.status}>加入关注</span>
-
                       </div>
                     </span>
                   </div>
@@ -393,10 +391,10 @@ class TopicIndex extends Component {
                     <span>
                       <span style={{verticalAlign: 'top' }}>至尊宝</span>
                       <span>设计师</span>
+                       <span className={styles.follow}><Icon type="plus"/> 加入关注</span>
                       <div>
                         <span className={styles.status}>20关注</span>
                         <span className={styles.status}>80回复</span>
-                        <span className={styles.status}>加入关注</span>
                       </div>
                     </span>
                   </div>
@@ -407,11 +405,10 @@ class TopicIndex extends Component {
                     <span>
                       <span style={{verticalAlign: 'top' }}>董春旭</span>
                       <span>营销设计部门</span>
+                       <span className={styles.follow}><Icon type="plus"/> 加入关注</span>
                      <div>
                         <span className={styles.status}>20关注</span>
                         <span className={styles.status}>80回复</span>
-                                               <span className={styles.status}>加入关注</span>
-
                       </div>
                     </span>
                   </div>

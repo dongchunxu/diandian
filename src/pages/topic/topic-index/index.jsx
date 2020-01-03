@@ -1,21 +1,13 @@
-import { Card, Col, Dropdown, Empty, Icon, Button, Row, Badge, Avatar, Spin } from 'antd';
+import { Avatar, Badge, Card, Col, Empty, Icon, Row, Spin } from 'antd';
 import React, { Component } from 'react';
 import { GridContent, PageHeaderWrapper } from '@ant-design/pro-layout';
 import { connect } from 'dva';
-import Link from 'umi/link';
 import styles from './style.less';
-import SmallCard from '@/pages/topic/topic-index/components/SmallCard';
 import HotTopic from '@/pages/topic/topic-index/components/HotTopic';
 import JoinUs from '../../../assets/wechat_banner.png';
-import Job from '../../../assets/undraw_multitasking_hqg3.svg';
-import ChatGroup from '../../../assets/undraw_chatting_2yvo.svg';
-import TradeIn from '../../../assets/undraw_make_it_rain_iwk4.svg';
-import Price from '../../../assets/undraw_printing_invoices_5r4r.svg';
-import Conversation from '../../../assets/undraw_word_of_mouth_v1j9.svg';
-import Advise from '../../../assets/undraw_wall_post_83ul.svg';
-import Deal from '../../../assets/undraw_business_deal_cpi9.svg';
 
-import TopicForm from '@/pages/topic/topic-index/components/TopicForm'; // const IntroduceRow = React.lazy(() => import('./components/IntroduceRow'));
+import TopicForm from '@/pages/topic/topic-index/components/TopicForm';
+import CategoryPanel from '@/pages/topic/topic-index/components/CategoryPanel'; // const IntroduceRow = React.lazy(() => import('./components/IntroduceRow'));
 
 @connect(({ dashboardAndanalysis, loading }) => ({
   dashboardAndanalysis,
@@ -41,6 +33,12 @@ class TopicIndex extends Component {
     dispatch({
       type: 'dashboardAndanalysis/fetchTopHotTopicList',
     });
+    dispatch({
+      type: 'dashboardAndanalysis/fetchTopicStatics',
+    });
+    dispatch({
+      type: 'dashboardAndanalysis/fetchTopHotUser',
+    })
   }
 
   componentWillUnmount() {
@@ -69,6 +67,9 @@ class TopicIndex extends Component {
   render() {
     const { dashboardAndanalysis, loading } = this.props;
     console.info("hotTopicList: ", dashboardAndanalysis.hotTopicList);
+    console.info("topicStatics: ", dashboardAndanalysis.topicStatics);
+
+
     const tabList = [
       {
         key: 'tab1',
@@ -85,97 +86,7 @@ class TopicIndex extends Component {
     ];
     const contentList = {
       tab1: (
-        <React.Fragment>
-          <Row gutter={24}>
-            <Col xl={8} lg={8} md={8} sm={8} xs={8}>
-              <Link to="/topic/category/1/list">
-                <SmallCard
-                  title="行业交流"
-                  imgUrl={ChatGroup}
-                  style={{
-                    width: 250,
-                    marginTop: 16,
-                  }}
-                />
-              </Link>
-            </Col>
-            <Col xl={8} lg={8} md={8} sm={8} xs={8}>
-              <Link to="/topic/category/2/list">
-                <SmallCard
-                  title="二手交易"
-                  imgUrl={TradeIn}
-                  style={{
-                    width: 250,
-                    marginTop: 16,
-                  }}
-                />
-              </Link>
-            </Col>
-            <Col xl={8} lg={8} md={8} sm={8} xs={8}>
-              <Link to="/topic/category/3/list">
-                <SmallCard
-                  title="求职招聘"
-                  imgUrl={Job}
-                  style={{
-                    width: 250,
-                    marginTop: 16,
-                  }}
-                />
-              </Link>
-            </Col>
-            <Col xl={8} lg={8} md={8} sm={8} xs={8}>
-              <Link to="/topic/category/4/list">
-                <SmallCard
-                  title="报价相关"
-                  imgUrl={Price}
-                  style={{
-                    width: 250,
-                    marginTop: 16,
-                  }}
-                />
-              </Link>
-            </Col>
-            <Col xl={8} lg={8} md={8} sm={8} xs={8}>
-              <SmallCard
-                title="吐槽八卦"
-                imgUrl={Conversation}
-                style={{
-                  width: 250,
-                  marginTop: 16,
-                }}
-              />
-            </Col>
-            <Col xl={8} lg={8} md={8} sm={8} xs={8}>
-              <SmallCard
-                title="意见与建议"
-                imgUrl={Advise}
-                style={{
-                  width: 250,
-                  marginTop: 16,
-                }}
-              />
-            </Col>
-            <Col xl={8} lg={8} md={8} sm={8} xs={8}>
-              <SmallCard
-                title="推广"
-                imgUrl={Deal}
-                style={{
-                  width: 250,
-                  marginTop: 16,
-                }}
-              />
-            </Col>
-            <Col xl={8} lg={8} md={8} sm={8} xs={8}>
-              <SmallCard
-                title="全部"
-                style={{
-                  width: 250,
-                  marginTop: 16,
-                }}
-              />
-            </Col>
-          </Row>
-        </React.Fragment>
+        <CategoryPanel statics={dashboardAndanalysis.topicStatics}/>
       ),
       tab2: (
         <Empty
@@ -300,118 +211,24 @@ class TopicIndex extends Component {
                   title="感兴趣的用户"
                   hoverable
                 >
-                  <div className={styles.recommendItem} style={{ fontSize: '14px', color: 'rgba(0, 0, 0, 0.87)', padding: '10px 0', borderBottom: '1px dashed rgb(238, 238, 238)'}}>
+                  {
+                    dashboardAndanalysis.topHotUser.map(x => {
+                      return (<div className={styles.recommendItem} style={{ fontSize: '14px', color: 'rgba(0, 0, 0, 0.87)', padding: '10px 0', borderBottom: '1px dashed rgb(238, 238, 238)'}}>
                     <span>
-                        <Avatar shape="square" size={32} src="http://img1.imgtn.bdimg.com/it/u=1340042389,756827382&fm=26&gp=0.jpg" />
+                        <Avatar shape="square" size={32} src={x.avatar} />
                     </span>
-                    <span>
-                      <span style={{verticalAlign: 'top' }}>猪八戒</span>
-                      <span>华东彩印</span>
-                      <span className={styles.follow}><Icon type="plus"/> 加入关注</span>
+                        <span>
+                      <span style={{verticalAlign: 'top' }}>{x.name}</span>
+                      <span>{x.orgName}</span>
+                      <span className={styles.follow}><Icon type="plus"/>关注</span>
                       <div>
-                        <span className={styles.status}>20关注</span>
-                        <span className={styles.status}>80回复</span>
+                        <span className={styles.status}>{x.followCnt}关注</span>
+                        <span className={styles.status}>{x.likeCnt}点赞</span>
                       </div>
                     </span>
-                  </div>
-                  <div className={styles.recommendItem} style={{ fontSize: '14px', color: 'rgba(0, 0, 0, 0.87)', padding: '10px 0', borderBottom: '1px dashed rgb(238, 238, 238)'}}>
-                    <span>
-                        <Avatar shape="square" size={32} src="http://n.sinaimg.cn/front/267/w640h427/20181108/0ctm-hnprhzw5214761.jpg" />
-                    </span>
-                    <span>
-                      <span style={{verticalAlign: 'top' }}>图美图文</span>
-                      <span>郑州盛大彩印</span>
-                      <span className={styles.follow}><Icon type="plus"/> 加入关注</span>
-                      <div>
-                        <span className={styles.status}>20关注</span>
-                        <span className={styles.status}>80回复</span>
-                      </div>
-                    </span>
-                  </div>
-                  <div className={styles.recommendItem} style={{ fontSize: '14px', color: 'rgba(0, 0, 0, 0.87)', padding: '10px 0', borderBottom: '1px dashed rgb(238, 238, 238)'}}>
-                    <span>
-                        <Avatar shape="square" size={32} src="http://www.people.com.cn/mediafile/pic/20140915/5/3319919736588078109.jpg?width=560" />
-                    </span>
-                    <span>
-                      <span style={{verticalAlign: 'top' }}>吴孟达</span>
-                      <span>营销设计部门</span>
-                       <span className={styles.follow}><Icon type="plus"/> 加入关注</span>
-                      <div>
-                        <span className={styles.status}>20关注</span>
-                        <span className={styles.status}>80回复</span>
-                      </div>
-                    </span>
-                  </div>
-                  <div className={styles.recommendItem} style={{ fontSize: '14px', color: 'rgba(0, 0, 0, 0.87)', padding: '10px 0', borderBottom: '1px dashed rgb(238, 238, 238)'}}>
-                    <span>
-                      <Avatar shape="square" size={32} src="http://n.sinaimg.cn/sinacn/w1280h720/20180118/eb6f-fyqtwzu0985450.jpg" />
-                    </span>
-                    <span>
-                      <span style={{verticalAlign: 'top' }}>孙悟东</span>
-                      <span>营销设计部门</span>
-                       <span className={styles.follow}><Icon type="plus"/> 加入关注</span>
-                      <div>
-                        <span className={styles.status}>20关注</span>
-                        <span className={styles.status}>80回复</span>
-                      </div>
-                    </span>
-                  </div>
-                  <div className={styles.recommendItem} style={{ fontSize: '14px', color: 'rgba(0, 0, 0, 0.87)', padding: '10px 0', borderBottom: '1px dashed rgb(238, 238, 238)'}}>
-                    <span>
-                     <Avatar shape="square" size={32} src="http://dingyue.nosdn.127.net/4sA5BtBoVgLEfd1qRgomHZKZUKwurVCbKRvQiFXCovBDL1536101741400.jpg" />
-                    </span>
-                    <span>
-                      <span style={{verticalAlign: 'top' }}>董春旭</span>
-                      <span>营销设计部门</span>
-                       <span className={styles.follow}><Icon type="plus"/> 加入关注</span>
-                      <div>
-                        <span className={styles.status}>20关注</span>
-                        <span className={styles.status}>80回复</span>
-                      </div>
-                    </span>
-                  </div>
-                  <div className={styles.recommendItem} style={{ fontSize: '14px', color: 'rgba(0, 0, 0, 0.87)', padding: '10px 0', borderBottom: '1px dashed rgb(238, 238, 238)'}}>
-                    <span>
-                       <Avatar shape="square" size={32} src="http://a.hiphotos.baidu.com/image/pic/item/f603918fa0ec08fa3139e00153ee3d6d55fbda5f.jpg" />
-                    </span>
-                    <span>
-                      <span style={{verticalAlign: 'top' }}>董春旭</span>
-                      <span>营销设计部门</span>
-                       <span className={styles.follow}><Icon type="plus"/> 加入关注</span>
-                      <div>
-                        <span className={styles.status}>20关注</span>
-                        <span className={styles.status}>80回复</span>
-                      </div>
-                    </span>
-                  </div>
-                  <div className={styles.recommendItem} style={{ fontSize: '14px', color: 'rgba(0, 0, 0, 0.87)', padding: '10px 0', borderBottom: '1px dashed rgb(238, 238, 238)'}}>
-                    <span>
-                        <Avatar shape="square" size={32} src="http://n.sinaimg.cn/sinacn10/200/w600h400/20180617/ee30-hcyszsa7917130.jpg" />
-                    </span>
-                    <span>
-                      <span style={{verticalAlign: 'top' }}>至尊宝</span>
-                      <span>设计师</span>
-                       <span className={styles.follow}><Icon type="plus"/> 加入关注</span>
-                      <div>
-                        <span className={styles.status}>20关注</span>
-                        <span className={styles.status}>80回复</span>
-                      </div>
-                    </span>
-                  </div>
-                  <div className={styles.recommendItem} style={{ fontSize: '14px', color: 'rgba(0, 0, 0, 0.87)', padding: '10px 0', borderBottom: '1px dashed rgb(238, 238, 238)'}}>
-                    <span>
-                      <Avatar shape="square" size={32} src="http://e.hiphotos.baidu.com/image/pic/item/10dfa9ec8a1363279e1ed28c9b8fa0ec09fac79a.jpg" />
-                    </span>
-                    <span>
-                      <span style={{verticalAlign: 'top' }}>董春旭</span>
-                      <span>营销设计部门</span>
-                       <span className={styles.follow}><Icon type="plus"/> 加入关注</span>
-                     <div>
-                        <span className={styles.status}>20关注</span>
-                        <span className={styles.status}>80回复</span>
-                      </div>
-                    </span>
-                  </div>
+                      </div>)
+                    })
+                  }
                 </Card>
                 <Card
                   bodyStyle={{ padding: '2px' }}

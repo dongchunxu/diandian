@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { Tag, Icon, Avatar } from 'antd';
 import Link from 'umi/link';
 import styles from './index.less';
+import { getHumanTime } from '@/utils/utils';
 
 
 class HotTopic extends PureComponent {
@@ -17,7 +18,11 @@ class HotTopic extends PureComponent {
                   <div style={{ fontSize: '14px', color: 'rgba(0,0,0,0.65)', marginBottom: '6px' }}>
                     <Avatar shape="square" size={26} src={topic.avatar} />
                     <span style={{ marginLeft: '10px' }}>{topic.authorName}</span>
-                    <span style={{ float: 'right' ,  fontSize: '12px', color: 'rgba(0,0,0,0.4)'}}>最近一条回帖：{Math.floor(Math.random() * 10)} 分钟前</span>
+                    {
+                      topic.lastReplyTime ?
+                        <span style={{ float: 'right' ,  fontSize: '12px', color: 'rgba(0,0,0,0.4)'}}>最近一条回帖：{getHumanTime(topic.lastReplyTime)}</span>
+                        : <span></span>
+                    }
                   </div>
                   <div className={styles.title}>
                     <span><a>{topic.title}</a></span>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Card, Avatar, Icon, Button, Divider } from 'antd';
+import { Row, Col, Card, Avatar, Icon, Button, Spin } from 'antd';
 import Link from 'umi/link';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { GridContent } from '@ant-design/pro-layout';
@@ -7,8 +7,10 @@ import { connect } from 'dva';
 import styles from './style.less';
 import TopicList from '@/pages/topic/topic-list-category/components/TopicList';
 
-@connect(({ topicListIndex }) => ({
+@connect(({ topicListIndex, loading }) => ({
   topicListIndex,
+  loading: loading.effects['topicListIndex/fetch'],
+
 }))
 class TopicListIndex extends React.Component {
 
@@ -35,9 +37,10 @@ class TopicListIndex extends React.Component {
   }
 
   render() {
-    const { topicListIndex } = this.props;
+    const { topicListIndex, loading } = this.props;
     const { topicList } = topicListIndex;
     return (
+      <Spin spinning={loading}>
       <PageHeaderWrapper title={false}>
         <GridContent>
           <React.Fragment>
@@ -48,7 +51,7 @@ class TopicListIndex extends React.Component {
                 marginTop: 0,
               }}
             >
-              <Col xl={18} lg={18} md={18} sm={18} xs={18}>
+              <Col xl={17} lg={18} md={18} sm={18} xs={18}>
                 <Card
                   className={styles.topicListContainer}
                   style={{
@@ -70,6 +73,7 @@ class TopicListIndex extends React.Component {
           </React.Fragment>
         </GridContent>
       </PageHeaderWrapper>
+      </Spin>
     );
   }
 }

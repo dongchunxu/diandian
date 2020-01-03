@@ -1,4 +1,4 @@
-import { fakeChartData, fetchHotTopicList } from './service';
+import { fakeChartData, fetchHotTopicList, fetchTopHotUser, fetchTopicStatics } from './service';
 
 const initState = {
   visitData: [],
@@ -12,6 +12,8 @@ const initState = {
   salesTypeDataOffline: [],
   radarData: [],
   hotTopicList: [],
+  topicStatics: {},
+  topHotUser: [],
 };
 const Model = {
   namespace: 'dashboardAndanalysis',
@@ -41,6 +43,26 @@ const Model = {
         type: 'save',
         payload: {
           hotTopicList: response.data,
+        },
+      });
+    },
+
+    *fetchTopicStatics(_, { call, put }) {
+      const response = yield call(fetchTopicStatics);
+      yield put({
+        type: 'save',
+        payload: {
+          topicStatics: response.data,
+        },
+      });
+    },
+
+    *fetchTopHotUser(_, { call, put }) {
+      const response = yield call(fetchTopHotUser);
+      yield put({
+        type: 'save',
+        payload: {
+          topHotUser: response.data,
         },
       });
     },

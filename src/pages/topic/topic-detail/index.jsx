@@ -1,19 +1,20 @@
 import React from 'react';
-import { Row, Col, Card, Avatar, Icon, Button, Divider } from 'antd';
+import { Row, Col, Card, Avatar, Icon, Button, Divider, Spin} from 'antd';
 import Link from 'umi/link';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { GridContent } from '@ant-design/pro-layout';
 import { connect } from 'dva';
 import styles from '@/pages/topic/topic-detail/style.less';
+import { getHumanTime } from '@/utils/utils';
 
-@connect(({ topicDetail }) => ({
+@connect(({ topicDetail, loading }) => ({
   detail: topicDetail.detail,
+  loading: loading.effects['topicDetail/fetch'],
 }))
 class TopicDetail extends React.Component {
 
   componentDidMount() {
     const { computedMatch: { params: { id } }, dispatch } = this.props;
-    console.info('id: ', id);
     dispatch({
       type: 'topicDetail/fetch',
       payload: {
@@ -23,9 +24,9 @@ class TopicDetail extends React.Component {
   }
 
   render() {
-    const { detail } = this.props;
-    console.info("render: ", detail);
+    const { detail, loading } = this.props;
     return (
+      <Spin spinning={loading}>
       <PageHeaderWrapper title={false}>
         <GridContent>
           <React.Fragment>
@@ -36,7 +37,7 @@ class TopicDetail extends React.Component {
                 marginTop: 0,
               }}
             >
-              <Col xl={18} lg={18} md={18} sm={18} xs={18}>
+              <Col xl={17} lg={18} md={18} sm={18} xs={18}>
                 <Card
                   className={styles.topicContainer}
                   style={{ width: '100%', minHeight: '720px' }}
@@ -59,7 +60,7 @@ class TopicDetail extends React.Component {
                       <Avatar shape="circle" size={26} src={detail.avatar} />
                       <span className={styles.author} >{detail.authorName}</span>
                       <span className={styles.orgName} ><Icon type="home" />&nbsp;&nbsp;{detail.orgName}</span>
-                      <span className={styles.addTime} >{detail.addTime}</span>
+                      <span className={styles.addTime} >发表时间：{getHumanTime(detail.addTime)}</span>
                     </div>
                     <div className={styles.title}>{detail.title}</div>
                     <div className={styles.content}>{detail.content}</div>
@@ -267,6 +268,7 @@ class TopicDetail extends React.Component {
           </React.Fragment>
         </GridContent>
       </PageHeaderWrapper>
+      </Spin>
     );
   }
 

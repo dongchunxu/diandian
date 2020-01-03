@@ -35,6 +35,24 @@ export const getAuthorityFromRouter = (router = [], pathname) => {
 };
 
 
-export const getHumanTime = () => {
-
+export const getHumanTime = (startTimestamp) => {
+  const now = new Date().getTime();
+  const diff = now - startTimestamp;
+  if (diff <= 10000) {
+    return '刚刚';
+  }
+  if (diff <= 1000 * 60) {
+    const sec = Math.floor(diff / 1000);
+    return `${sec}秒前`;
+  }
+  if (diff <= 1000 * 60 * 60) {
+    const min = Math.floor(diff / (1000 * 60));
+    return `${min}分钟前`;
+  }
+  if (diff <= 1000 * 60 * 60 * 60) {
+    const hour = Math.floor(diff / (1000 * 60 * 60));
+    return `${hour}小时前`;
+  }
+  const hour = Math.floor(diff / (1000 * 60 * 60 * 60));
+  return `${hour}天前`;
 };

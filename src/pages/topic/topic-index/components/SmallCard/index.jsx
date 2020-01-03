@@ -3,7 +3,7 @@ import styles from './index.less';
 
 class SmallCard extends PureComponent {
   render() {
-    const { imgUrl, title } = this.props;
+    const { imgUrl, title, total, today } = this.props;
 
     const allTopic = (
       <div className={styles.smallCardContainer}>
@@ -12,8 +12,8 @@ class SmallCard extends PureComponent {
             { title }
           </div>
           <div className={styles.otherInfo}>
-            <span>今日 (<b>100</b>)</span>
-            <span>历史总数 (2889)</span>
+            <span>今日 (<b>{today}</b>)</span>
+            <span>历史总数 ({total})</span>
           </div>
         </div>
       </div>
@@ -34,8 +34,8 @@ class SmallCard extends PureComponent {
               { title }
             </div>
             <div className={styles.otherInfo}>
-              <span>今日 (10)</span>
-              <span>历史总数 (288)</span>
+              <span>今日 ({today})</span>
+              <span>历史总数 ({total})</span>
             </div>
           </div>
         </div>) : allTopic);
